@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Placement Readiness Platform</title>
+
+    <!-- Font -->
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container mt-5 fade-in">
+
+    <!-- ================= HERO ================= -->
+    <div class="card hero-card p-5 mb-5 text-center">
+        <h1 class="mb-3">Placement Readiness Platform</h1>
+        <p class="text-muted mb-4">
+            An intelligent platform to evaluate your academic strength, technical depth,
+            coding maturity, and project exposure — all through a single interactive dashboard.
+        </p>
+
+        <a href="/student" class="btn btn-primary btn-lg px-5">
+            Start My Evaluation
+        </a>
+    </div>
+
+    <!-- ================= FEATURES ================= -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-3">
+            <div class="card feature-card skill-card h-100 p-4">
+                <h6 class="mb-2">Skill Gap Analysis</h6>
+                <p class="text-muted mb-0">
+                    Identify strengths and gaps across academics, skills, and practical exposure.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card feature-card score-card h-100 p-4">
+                <h6 class="mb-2">Readiness Score</h6>
+                <p class="text-muted mb-0">
+                    A consolidated score that reflects your overall placement preparedness.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card feature-card visual-card h-100 p-4">
+                <h6 class="mb-2">Visual Insights</h6>
+                <p class="text-muted mb-0">
+                    Radar charts and progress indicators for clear performance understanding.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card feature-card insight-card h-100 p-4">
+                <h6 class="mb-2">Actionable Insights</h6>
+                <p class="text-muted mb-0">
+                    Personalized strengths, improvement areas, and targeted recommendations.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= HOW IT WORKS ================= -->
+<div class="card how-card p-4 mb-5">
+    <h5 class="mb-3">How Your Readiness Is Evaluated</h5>
+
+    <div class="row g-3">
+
+        <div class="col-md-4">
+            <div class="logic-box">
+                <strong>Academics & Skills</strong>
+                <p class="mb-0 text-muted">
+                    Academic performance and technical fundamentals form the base of the evaluation.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="logic-box">
+                <strong>Coding & Problem Solving</strong>
+                <p class="mb-0 text-muted">
+                    Competitive coding reflects logical thinking and real interview readiness.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="logic-box">
+                <strong>Projects & Practical Work</strong>
+                <p class="mb-0 text-muted">
+                    GitHub activity represents hands-on experience and real-world application.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="text-muted small mt-3 mb-0">
+        The final readiness score is calculated by combining these factors into a single, balanced evaluation.
+    </p>
+</div>
+
+
+    <!-- ================= FOOT NOTE ================= -->
+    <p class="text-center text-muted small">
+        Built for students preparing for internships and placements who want
+        structured, data-driven self-evaluation.
+    </p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

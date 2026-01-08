@@ -1,0 +1,296 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+.card {
+    border: none;
+}
+
+.btn-primary {
+    background-color: #602673;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #832a82;
+}
+
+/* Fade-in animation */
+.fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button hover lift */
+.btn-primary {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.progress {
+    height: 12px;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    animation: fillBar 1.2s ease-in-out;
+}
+
+@keyframes fillBar {
+    from { width: 0; }
+}
+
+/* Dashboard cards */
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Highlight cards */
+.highlight {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+}
+
+.highlight small {
+    opacity: 0.9;
+}
+
+/* Better progress bars */
+.progress {
+    height: 14px;
+    background-color: #e5e7eb;
+    border-radius: 20px;
+}
+
+.progress-bar {
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Section titles */
+.section-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* ===== Dashboard Color Variants ===== */
+
+.card-strength {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+}
+
+.card-improve {
+    background: linear-gradient(135deg, #fff7ed, #ffedd5);
+}
+
+.card-skillgap {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+
+.card-coding {
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+}
+
+.card-github {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+}
+
+.card-recommend {
+    background: linear-gradient(135deg, #fefce8, #fef3c7);
+}
+
+/* Improve text contrast */
+.dashboard-card h5 {
+    font-weight: 600;
+}
+
+.dashboard-card ul {
+    padding-left: 18px;
+}
+/* Radar chart sizing */
+/* Radar chart container */
+.radar-wrapper {
+    width: 360px;          /* fixed dashboard size */
+    height: 360px;
+    margin: auto;
+}
+
+/* IMPORTANT: let Chart.js handle resolution */
+.radar-wrapper canvas {
+    display: block;
+}
+
+.dashboard-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+}
+.progress-bar {
+    transition: width 1.2s ease-in-out;
+}
+
+.fade-in {
+    animation: fadeSlide 0.6s ease forwards;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.submit-btn {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.submit-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Validation feedback */
+input:invalid {
+    border-color: #ef4444;
+}
+
+input:valid {
+    border-color: #22c55e;
+}
+/* ---------- PRIMARY BUTTON (GLOBAL) ---------- */
+.btn-primary,
+.btn-primary-action {
+    background-color: #602673;
+    border: none;
+    border-radius: 10px;     /* clean, not too rounded */
+    padding: 10px 36px;
+    font-weight: 600;
+    color: #ffffff;
+    transition: all 0.25s ease;
+}
+
+.btn-primary:hover,
+.btn-primary-action:hover {
+    background-color: #832a82;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.btn-primary:active,
+.btn-primary-action:active {
+    transform: translateY(0);
+}
+.hero-card {
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    background: #ffffff;
+}
+
+.feature-card {
+    border-radius: 16px;
+    border: none;
+    background: #f8fafc;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.feature-card h6 {
+    font-weight: 700;
+}
+body {
+    font-family: 'Manrope', sans-serif;
+}
+
+/* ---------- HERO ---------- */
+.hero-card {
+    border-radius: 22px;
+    border: none;
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+    animation: fadeUp 0.6s ease;
+}
+
+/* ---------- FEATURE CARDS ---------- */
+.feature-card {
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* ---------- COLOR ACCENTS ---------- */
+.skill-card {
+    background: linear-gradient(135deg, #eef6ff, #ffffff);
+}
+
+.score-card {
+    background: linear-gradient(135deg, #f3f0ff, #ffffff);
+}
+
+.visual-card {
+    background: linear-gradient(135deg, #ecfdf5, #ffffff);
+}
+
+.insight-card {
+    background: linear-gradient(135deg, #fff7ed, #ffffff);
+}
+
+/* ---------- MICRO ANIMATION ---------- */
+.fade-in {
+    animation: fadeUp 0.7s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- HOW IT WORKS ---------- */
+.how-card {
+    border-radius: 18px;
+    border: none;
+    background: #ffffff;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+}
+
+.logic-box {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 16px;
+    height: 100%;
+}
