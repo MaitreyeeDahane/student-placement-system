@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f4f6fb;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4c1158, #71449e);
+            padding: 20px 40px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2ch;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background: linear-gradient( #4c1158, #71449e);
+            font-weight: 600;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .high { background: #d4f8e8; color: #0f8f5f; }
+        .medium { background: #fff3cd; color: #856404; }
+        .low { background: #f8d7da; color: #721c24; }
+
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    width: 200px;                /* reduce card size */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card h1 {
+    font-size: 28px;             /* slightly smaller number */
+    margin: 8px 0 0;
+}
+
+.card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+/* center the cards row */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* keep color vibes */
+.card.high { background: #dcfce7; }
+.card.medium { background: #fef9c3; }
+.card.low { background: #fee2e2; }
+
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    width: 200px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+/* Gradient glow */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+        120deg,
+        #fbfbfc,
+       
+        #dacafb
+    );
+    
+    border-radius: 18px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 18px 40px rgba(124,58,237,0.25);
+}
+
+.card h1 {
+    font-size: 28px;
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+.card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+/* soft color cards */
+.card.high { background: #dcfce7; }
+.card.medium { background: #fef9c3; }
+.card.low { background: #fee2e2; }
+
+
+        
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div>Student Placement Dashboard</div>
+    <div>
+        Welcome, {{ session.admin_username }} |
+        <a href="{{ url_for('admin_logout') }}">Logout</a>
+    </div>
+</div>
+
+<div style="display:flex; gap:20px; margin-bottom:30px; flex-wrap:wrap;">
+    
+    <div class="card" style="flex:1; text-align:center;">
+        <h3>Total Students</h3>
+        <h1>{{ stats.total }}</h1>
+    </div>
+
+    <div class="card high" style="flex:1; text-align:center;">
+        <h3>High Chance</h3>
+        <h1>{{ stats.high }}</h1>
+    </div>
+
+    <div class="card medium" style="flex:1; text-align:center;">
+        <h3>Medium Chance</h3>
+        <h1>{{ stats.medium }}</h1>
+    </div>
+
+    <div class="card low" style="flex:1; text-align:center;">
+        <h3>Low Chance</h3>
+        <h1>{{ stats.low }}</h1>
+    </div>
+
+</div>
+
+
+<div class="container">
+    <h2>Student Evaluations</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>Overall Score</th>
+            <th>Status</th>
+            <th>Evaluated On</th>
+        </tr>
+
+        {% for row in students %}
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.branch }}</td>
+            <td>{{ row.overall_score }}%</td>
+            <td>
+                <span class="badge 
+                    {% if row.status == 'High Chance' %}high
+                    {% elif row.status == 'Medium Chance' %}medium
+                    {% else %}low{% endif %}">
+                    {{ row.status }}
+                </span>
+            </td>
+            <td>{{ row.evaluated_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script>
+    const counters = document.querySelectorAll(".card h1");
+
+    counters.forEach(counter => {
+        const target = +counter.innerText;
+        let count = 0;
+        const speed = 20;
+
+        const updateCount = () => {
+            const increment = Math.ceil(target / speed);
+            if (count < target) {
+                count += increment;
+                counter.innerText = count;
+                setTimeout(updateCount, 40);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        updateCount();
+    });
+</script>
+
+
+</body>
+</html>

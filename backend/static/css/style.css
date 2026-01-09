@@ -66,7 +66,7 @@ body {
 
 /* Highlight cards */
 .highlight {
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    background: linear-gradient(135deg, #4c1158, #71449e);
     color: white;
 }
 
@@ -176,7 +176,7 @@ body {
 
 /* Validation feedback */
 input:invalid {
-    border-color: #ef4444;
+    border-color: #a22a2a;
 }
 
 input:valid {
@@ -185,7 +185,7 @@ input:valid {
 /* ---------- PRIMARY BUTTON (GLOBAL) ---------- */
 .btn-primary,
 .btn-primary-action {
-    background-color: #602673;
+    background: linear-gradient( #4c1158, #71449e);
     border: none;
     border-radius: 10px;     /* clean, not too rounded */
     padding: 10px 36px;
@@ -196,9 +196,10 @@ input:valid {
 
 .btn-primary:hover,
 .btn-primary-action:hover {
-    background-color: #832a82;
+    background: linear-gradient( #310939, #502b75);
     color: #ffffff;
     transform: translateY(-2px);
+    
 }
 
 .btn-primary:active,
@@ -294,3 +295,33 @@ body {
     padding: 16px;
     height: 100%;
 }
+
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- DARK MODE ---------- */
+body.dark {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #f1f1f1;
+}
+
+body.dark .card {
+    background: #1e1e2e;
+    color: #f1f1f1;
+}
+
+body.dark table th {
+    background: #2a2a40;
+}
+
+body.dark input {
+    background: #2a2a40;
+    color: white;
+    border: 1px solid #444;
+}
+
+
