@@ -12,10 +12,34 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
 
-<button onclick="toggleTheme()" style="
+<div style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+">
+    <a href="{{ url_for('admin_login') }}"
+       title="Admin Login"
+       style="
+          background: linear-gradient( #4c1158, #71449e);
+           color: white;
+           padding: 10px 14px;
+           border-radius: 12px;
+           text-decoration: none;
+           box-shadow: 0 6px 20px rgba(108,99,255,0.35);
+       ">
+        <i class="fa-solid fa-user-shield"></i>
+    </a>
+</div>
+
+
+<!-- <button onclick="toggleTheme()" style="
 position: fixed;
 bottom: 20px;
 right: 20px;
@@ -23,10 +47,10 @@ border-radius: 50%;
 width: 45px;
 height: 45px;">
 🌙
-</button>
+</button> -->
 
 
-<div class="container mt-5 fade-in">
+<!-- <div class="container mt-5 fade-in">
 <a href="/admin/login" style="
 position: absolute;
 top: 20px;
@@ -35,7 +59,7 @@ font-size: 14px;
 color: rgb(86, 38, 103);
 font-weight: 500;">
 Admin Login
-</a>
+</a> -->
 
     <!-- ================= HERO ================= -->
     <div class="card hero-card p-5 mb-5 text-center">

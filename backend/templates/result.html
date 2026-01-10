@@ -12,8 +12,36 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
 </head>
 <body>
+
+<div style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+">
+    <a href="{{ url_for('home') }}"
+       title="Home"
+       style="
+           background: linear-gradient( #4c1158, #71449e);
+           color: white;
+           padding: 10px 14px;
+           border-radius: 12px;
+           text-decoration: none;
+           box-shadow: 0 6px 20px rgba(108,99,255,0.35);
+           display: inline-flex;
+           align-items: center;
+           justify-content: center;
+       ">
+        <i class="fa-solid fa-house"></i>
+    </a>
+</div>
+
 
 <div class="container mt-5 fade-in">
 
@@ -38,7 +66,7 @@
     <div class="row mb-4">
         <div class="col-md-6">
             <div class="card dashboard-card card-strength p-4 h-100">
-                <h5 class="mb-2">💪 Your Strengths</h5>
+                <h5 class="mb-2"> Your Strengths</h5>
                 <ul class="mb-0">
     {% for item in strengths %}
         <li>{{ item }}</li>
@@ -50,7 +78,7 @@
 
         <div class="col-md-6">
             <div class="card dashboard-card card-improve p-4 h-100">
-                <h5 class="mb-2">⚠️ Areas to Improve</h5>
+                <h5 class="mb-2"> Areas to Improve</h5>
                 <ul class="mb-0">
     {% for item in improvements %}
         <li>{{ item }}</li>
@@ -67,7 +95,7 @@
         <!-- LEFT: RADAR -->
         <div class="col-md-5">
             <div class="card dashboard-card card-skillgap p-4 h-100">
-                <h5 class="mb-3">📈 Strength vs Weakness</h5>
+                <h5 class="mb-3"> Strength vs Weakness</h5>
 
                 <div class="radar-wrapper">
                     <canvas id="radarChart"></canvas>
@@ -78,7 +106,7 @@
         <!-- RIGHT: SKILL GAP -->
         <div class="col-md-7">
             <div class="card dashboard-card card-skillgap p-4 h-100">
-                <h5 class="mb-3">📊 Skill Gap Analysis</h5>
+                <h5 class="mb-3"> Skill Gap Analysis</h5>
 
                 <div class="mb-3">
                     <label class="form-label">Academics</label>
