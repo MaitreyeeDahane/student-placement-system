@@ -165,55 +165,92 @@ def submit():
     # ================= DATABASE INSERT (ALL TABLES) =================
     try:
         conn = get_db_connection()
-        cursor = conn.cursor()
+        cursor = conn.cursor(dictionary=True)
 
-        # Insert into students
-        # ---------- CHECK IF STUDENT ALREADY EXISTS ----------
-    cursor.execute(
-        "SELECT id FROM students WHERE name=%s AND branch=%s",
-        (name, branch)
-    )
-    existing_student = cursor.fetchone()
+        # ---------- STUDENT ----------
+        cursor.execute(
+            "SELECT id FROM students WHERE name=%s AND branch=%s",
+            (name, branch)
+        )
+        student = cursor.fetchone()
 
-    if existing_student:
-        student_id = existing_student["id"]
-    else:
-        cursor.execute("""
-            INSERT INTO students 
-            (name, branch, cgpa, attendance, technical_skills, soft_skills)
-            VALUES (%s, %s, %s, %s, %s, %s)
-        """, (name, branch, cgpa, attendance, technical_skills, soft_skills))
-        student_id = cursor.lastrowid
+        if student:
+            student_id = student["id"]
+            cursor.execute("""
+                UPDATE students
+                SET cgpa=%s,
+                    attendance=%s,
+                    technical_skills=%s,
+                    soft_skills=%s
+                WHERE id=%s
+            """, (cgpa, attendance, technical_skills, soft_skills, student_id))
+        else:
+            cursor.execute("""
+                INSERT INTO students
+                (name, branch, cgpa, attendance, technical_skills, soft_skills)
+                VALUES (%s, %s, %s, %s, %s, %s)
+            """, (name, branch, cgpa, attendance, technical_skills, soft_skills))
+            student_id = cursor.lastrowid
 
+        # ---------- CODING PROFILE ----------
+        cursor.execute(
+            "SELECT id FROM coding_profile WHERE student_id=%s",
+            (student_id,)
+        )
+        if cursor.fetchone():
+            cursor.execute("""
+                UPDATE coding_profile
+                SET leetcode_solved=%s,
+                    leetcode_level=%s,
+                    hackerrank_level=%s
+                WHERE student_id=%s
+            """, (leetcode, leetcode_level, hackerrank_level, student_id))
+        else:
+            cursor.execute("""
+                INSERT INTO coding_profile
+                (student_id, leetcode_solved, leetcode_level, hackerrank_level)
+                VALUES (%s, %s, %s, %s)
+            """, (student_id, leetcode, leetcode_level, hackerrank_level))
 
-        # Insert into coding_profile
-        cursor.execute("""
-            INSERT INTO coding_profile
-            (student_id, leetcode_solved, leetcode_level, hackerrank_level)
-            VALUES (%s, %s, %s, %s)
-        """, (student_id, leetcode, leetcode_level, hackerrank_level))
+        # ---------- GITHUB ACTIVITY ----------
+        cursor.execute(
+            "SELECT id FROM github_activity WHERE student_id=%s",
+            (student_id,)
+        )
+        if cursor.fetchone():
+            cursor.execute("""
+                UPDATE github_activity
+                SET repositories=%s,
+                    commits=%s,
+                    projects=%s
+                WHERE student_id=%s
+            """, (github_repos, github_commits, github_projects, student_id))
+        else:
+            cursor.execute("""
+                INSERT INTO github_activity
+                (student_id, repositories, commits, projects)
+                VALUES (%s, %s, %s, %s)
+            """, (student_id, github_repos, github_commits, github_projects))
 
-        # Insert into github_activity
-        cursor.execute("""
-            INSERT INTO github_activity
-            (student_id, repositories, commits, projects)
-            VALUES (%s, %s, %s, %s)
-        """, (student_id, github_repos, github_commits, github_projects))
-
-        # Insert into evaluations
+        # ---------- EVALUATION (ALWAYS INSERT) ----------
         cursor.execute("""
             INSERT INTO evaluations
             (student_id, academics_score, technical_score, soft_score,
-             coding_score, github_score, overall_score, status)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            coding_score, github_score, overall_score, status, evaluated_at)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())
         """, (student_id, academics, technical, soft, coding, github, score, status))
 
         conn.commit()
-        cursor.close()
-        conn.close()
 
     except Exception as e:
         print("Database error:", e)
+
+    finally:
+        cursor.close()
+        conn.close()
+
+
+    
 
     # ================= SEND DATA TO UI =================
     return render_template(
@@ -317,20 +354,22 @@ def admin_dashboard():
     # ---------- STATS (MATCH TABLE EXACTLY) ----------
     cursor.execute("""
         SELECT
-            COUNT(*) AS total,
-            SUM(status = 'High Chance') AS high,
-            SUM(status = 'Medium Chance') AS medium,
-            SUM(status = 'Low Chance') AS low
-        FROM (
-            SELECT 
-                e.status,
-                ROW_NUMBER() OVER (
-                    PARTITION BY e.student_id 
-                    ORDER BY e.evaluated_at DESC, e.id DESC
-                ) AS rn
-            FROM evaluations e
-        ) ranked
-        WHERE rn = 1
+    COUNT(*) AS total,
+    SUM(status='High Chance') AS high,
+    SUM(status='Medium Chance') AS medium,
+    SUM(status='Low Chance') AS low
+FROM (
+    SELECT e.*
+    FROM evaluations e
+    JOIN (
+        SELECT student_id, MAX(evaluated_at) max_date
+        FROM evaluations
+        GROUP BY student_id
+    ) latest
+    ON e.student_id = latest.student_id
+    AND e.evaluated_at = latest.max_date
+) final;
+
     """)
     stats = cursor.fetchone()
 
