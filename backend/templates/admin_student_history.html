@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Evaluation History</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f4f6fb;
+        }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            background: linear-gradient(135deg, #4c1158, #71449e);
+            padding: 20px 40px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* icon container */
+.icon-btn {
+    background: rgba(255,255,255,0.18);
+    padding: 10px 14px;
+    border-radius: 14px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+/* icon itself */
+.icon-btn i {
+    font-size: 16px;
+}
+
+/* hover effect */
+.icon-btn:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-1px);
+}
+
+
+        /* ---------- CONTAINER ---------- */
+        .container {
+            padding: 30px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        /* ---------- TABLE ---------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background: linear-gradient( #4c1158, #71449e);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        /* ---------- STATUS BADGES ---------- */
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .high {
+            background: #dcfce7;
+            color: #0f8f5f;
+        }
+
+        .medium {
+            background: #fef3c7;
+            color: #856404;
+        }
+
+        .low {
+            background: #fee2e2;
+            color: #721c24;
+        }
+
+        /* ---------- BACK BUTTON ---------- */
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #6c63ff;
+            font-weight: 400;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .history-actions {
+    margin-top: 30px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background: linear-gradient(135deg,  #4c1158, #71449e);
+    color: white;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 400;
+    box-shadow: 0 8px 24px rgba(108,99,255,0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(108,99,255,0.45);
+}
+
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div>
+        Student Placement Dashboard
+    </div>
+
+    <div class="nav-right">
+        <span>{{ session.admin_username }}</span>
+
+        <a href="{{ url_for('home') }}" class="icon-btn" title="Home">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <a href="{{ url_for('admin_logout') }}" class="icon-btn" title="Logout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+    </a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+    <h2>{{ student.name }} ({{ student.branch }}) – Evaluation History</h2>
+
+    <table>
+        <tr>
+            <th>Academics</th>
+            <th>Technical</th>
+            <th>Soft</th>
+            <th>Coding</th>
+            <th>GitHub</th>
+            <th>Overall</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+
+        {% for row in evaluations %}
+        <tr>
+            <td>{{ row.academics_score }}</td>
+            <td>{{ row.technical_score }}</td>
+            <td>{{ row.soft_score }}</td>
+            <td>{{ row.coding_score }}</td>
+            <td>{{ row.github_score }}</td>
+            <td>{{ row.overall_score }}%</td>
+            <td>
+                <span class="badge
+                    {% if row.status == 'High Chance' %}high
+                    {% elif row.status == 'Medium Chance' %}medium
+                    {% else %}low{% endif %}">
+                    {{ row.status }}
+                </span>
+            </td>
+            <td>{{ row.evaluated_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="history-actions">
+    <a href="{{ url_for('admin_dashboard') }}" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back
+    </a>
+</div>
+
+</div>
+
+</body>
+</html>

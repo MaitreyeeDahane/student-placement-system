@@ -331,24 +331,23 @@ def admin_dashboard():
 
     # ---------- STUDENT LIST (LATEST ONLY, NO DUPLICATES) ----------
     cursor.execute("""
-        SELECT name, branch, overall_score, status, evaluated_at
-        FROM (
-            SELECT 
-                s.name,
-                s.branch,
-                e.overall_score,
-                e.status,
-                e.evaluated_at,
-                ROW_NUMBER() OVER (
-                    PARTITION BY s.id 
-                    ORDER BY e.evaluated_at DESC, e.id DESC
-                ) AS rn
-            FROM students s
-            JOIN evaluations e ON s.id = e.student_id
-        ) ranked
-        WHERE rn = 1
-        ORDER BY evaluated_at DESC
-    """)
+    SELECT 
+        s.id AS student_id,
+        s.name,
+        s.branch,
+        e.overall_score,
+        e.status,
+        e.evaluated_at
+    FROM students s
+    JOIN evaluations e ON s.id = e.student_id
+    WHERE e.evaluated_at = (
+        SELECT MAX(e2.evaluated_at)
+        FROM evaluations e2
+        WHERE e2.student_id = s.id
+    )
+    ORDER BY e.evaluated_at DESC
+""")
+
     students = cursor.fetchall()
 
     # ---------- STATS (MATCH TABLE EXACTLY) ----------
@@ -389,6 +388,49 @@ FROM (
 def admin_logout():
     session.clear()
     return redirect(url_for("admin_login"))
+
+@app.route("/admin/student/<int:student_id>")
+def admin_student_history(student_id):
+    if not session.get("admin_logged_in"):
+        return redirect(url_for("admin_login"))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("""
+        SELECT 
+            academics_score,
+            technical_score,
+            soft_score,
+            coding_score,
+            github_score,
+            overall_score,
+            status,
+            evaluated_at
+        FROM evaluations
+        WHERE student_id = %s
+        ORDER BY evaluated_at DESC
+    """, (student_id,))
+
+    evaluations = cursor.fetchall()
+
+    cursor.execute("""
+        SELECT name, branch
+        FROM students
+        WHERE id = %s
+    """, (student_id,))
+
+    student = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    return render_template(
+        "admin_student_history.html",
+        student=student,
+        evaluations=evaluations
+    )
+
 
 
 
