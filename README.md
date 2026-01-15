@@ -69,10 +69,96 @@ The system supports **multiple evaluations per student**, allowing admins to tra
 ---
 
 ## 📸 Screenshots
-### 1. Index Page
-<img width="1900" height="887" alt="Index Page" src="https://github.com/user-attachments/assets/b456bd30-31ba-4341-98b4-166116fffb8d" />
+#### 1. Index Page
+<img width="1900" height="900" alt="Index Page" src="https://github.com/user-attachments/assets/b456bd30-31ba-4341-98b4-166116fffb8d" />
+
+#### 2. Student Form
+<img width="1900" height="900" alt="image" src="https://github.com/user-attachments/assets/ea227557-c0d4-48e2-8d9d-98ac141daa04" />
+
+#### 3. Result Page
+<img width="1900" height="900" alt="image" src="https://github.com/user-attachments/assets/16960695-58e7-4c67-992a-b63b64a20e5f" />
+
+#### 4. Admin Login
+<img width="1900" height="900" alt="image" src="https://github.com/user-attachments/assets/e941fcdb-2c1e-4538-a116-dd94f8e3c89b" />
+
+#### 5. Admin Dashboard
+<img width="1900" height="900" alt="image" src="https://github.com/user-attachments/assets/422ac557-0287-44f7-a5fc-b8cdc80612b6" />
+
+#### 6. Student History
+<img width="1900" height="900" alt="image" src="https://github.com/user-attachments/assets/71620d0f-48e4-4f91-82d3-e5b3d48128a2" />
+
+student_placement_system/
+│
+├── backend/
+│   ├── app.py
+│   ├── db.py
+│   ├── templates/
+│   ├── static/
+│   └── requirements.txt
+│
+├── screenshots/
+│
+└── README.md
+⚙️ How to Run Locally
+
+Clone the repository
+
+git clone <your-repo-url>
+cd student_placement_system/backend
 
 
+Install dependencies
+
+pip install -r requirements.txt
+
+
+Configure MySQL database
+
+Create the required tables (students, evaluations, admins, etc.)
+
+Update database credentials in db.py
+
+Run the application
+
+python app.py
+
+
+Open in browser
+
+http://127.0.0.1:5000/
+
+📌 Project Status
+
+🚧 Actively in development
+
+Planned enhancements:
+
+Visual performance charts (radar / trend graphs)
+
+Search & filters in admin dashboard
+
+Export evaluation reports (PDF/CSV)
+
+Cloud deployment
+
+💡 Why This Project?
+
+This project demonstrates:
+
+Full-stack web development
+
+Database design with relationships and constraints
+
+Admin dashboards and analytics
+
+Clean UI/UX thinking
+
+Real-world problem solving for student placement analysis
+
+👤 Author
+
+Maitreyee Dahane
+Computer Engineering Student
 
 
 
