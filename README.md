@@ -1,8 +1,3 @@
-\# Student Performance \& Placement Prediction System
-
-
-
-A cloud-based web application that analyzes academic, coding, and project-based performance of students to predict placement readiness and visualize insights using dashboards.
 
 #  Student Placement Evaluation & Analytics System
 
@@ -87,81 +82,79 @@ The system supports **multiple evaluations per student**, allowing admins to tra
 #### 6. Student History
 <img width="1900" height="900" alt="image" src="https://github.com/user-attachments/assets/71620d0f-48e4-4f91-82d3-e5b3d48128a2" />
 
-student_placement_system/
-│
-├── backend/
-│   ├── app.py
-│   ├── db.py
-│   ├── templates/
-│   ├── static/
-│   └── requirements.txt
-│
-├── screenshots/
-│
-└── README.md
-⚙️ How to Run Locally
+## ⚙️ How to Run Locally
 
-Clone the repository
-
-git clone <your-repo-url>
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/MaitreyeeDahane/student-placement-system.git
 cd student_placement_system/backend
-
-
-Install dependencies
-
+```
+### 2️⃣ Install Dependencies
+```bash
 pip install -r requirements.txt
+```
+### 3️⃣ Configure MySQL Database
 
+- Create a MySQL database
 
-Configure MySQL database
+- Create the required tables:
 
-Create the required tables (students, evaluations, admins, etc.)
+  - students
 
-Update database credentials in db.py
+  - evaluations
 
-Run the application
+  - coding_profile
 
+  - github_activity
+
+  - admins
+
+- Update database credentials in db.py
+
+### 4️⃣ Run the Application
+```bash
 python app.py
-
-
-Open in browser
-
+```
+5️⃣ Open in Browser
+```bash
 http://127.0.0.1:5000/
+```
+### 📌 Project Status : 
 
-📌 Project Status
+###  🚧 Actively in Development
 
-🚧 Actively in development
+#### Planned Enhancements
 
-Planned enhancements:
+- 📊 Visual performance analytics (radar & trend graphs)
 
-Visual performance charts (radar / trend graphs)
+- 🔍 Search, filters, and sorting in admin dashboard
 
-Search & filters in admin dashboard
+- 📄 Export evaluation reports (PDF / CSV)
 
-Export evaluation reports (PDF/CSV)
+- ☁️ Cloud deployment (future-ready architecture)
 
-Cloud deployment
+### 💡 Why This Project?
 
-💡 Why This Project?
+#### This project demonstrates:
 
-This project demonstrates:
+- Full-stack web development using Flask
 
-Full-stack web development
+- Relational database design with constraints & normalization
 
-Database design with relationships and constraints
+- Secure admin authentication and dashboards
 
-Admin dashboards and analytics
+- Analytics-driven student performance evaluation
 
-Clean UI/UX thinking
+- Clean UI/UX design with consistency across pages
 
-Real-world problem solving for student placement analysis
+- Real-world problem solving for placement readiness analysis
 
-👤 Author
+---
 
-Maitreyee Dahane
-Computer Engineering Student
+### 👤 Author
 
-
-
+**Maitreyee Dahane**
+####Computer Engineering Student
 
 
 
