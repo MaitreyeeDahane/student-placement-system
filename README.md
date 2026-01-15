@@ -69,7 +69,7 @@ The system supports **multiple evaluations per student**, allowing admins to tra
 ---
 
 ## 📸 Screenshots
-
+### 1. Index Page
 <img width="1900" height="887" alt="Index Page" src="https://github.com/user-attachments/assets/b456bd30-31ba-4341-98b4-166116fffb8d" />
 
 
