@@ -4,13 +4,13 @@
 
 A cloud-based web application that analyzes academic, coding, and project-based performance of students to predict placement readiness and visualize insights using dashboards.
 
-# 🎓 Student Placement Evaluation & Analytics System
+#  Student Placement Evaluation & Analytics System
 
 A full-stack web application designed to evaluate student placement readiness based on academics, skills, competitive coding, and project activity, with a secure admin dashboard for analytics and progress tracking.
 
 ---
 
-## 🚀 Overview
+##  Overview
 
 This system helps analyze and track a student’s placement preparedness through structured evaluations and meaningful insights. It supports multiple evaluations per student, enabling progress monitoring over time, and provides administrators with a centralized dashboard for analytics and decision-making.
 
@@ -18,7 +18,7 @@ This system helps analyze and track a student’s placement preparedness through
 
 ## ✨ Key Features
 
-### 👨‍🎓 Student Module
+###  Student Module
 - Structured evaluation form covering:
   - Academics (CGPA & attendance)
   - Technical skills
@@ -29,7 +29,7 @@ This system helps analyze and track a student’s placement preparedness through
 - Detailed feedback on strengths and improvement areas
 - Personalized recommendations based on performance
 
-### 🧑‍💼 Admin Module
+###  Admin Module
 - Secure admin login & logout
 - Interactive dashboard with:
   - Total students evaluated
@@ -41,7 +41,7 @@ This system helps analyze and track a student’s placement preparedness through
 
 ---
 
-## 📊 Evaluation Logic
+##  Evaluation Logic
 
 Each evaluation is calculated using weighted metrics:
 - **Academics:** CGPA & attendance
@@ -70,7 +70,8 @@ The system supports **multiple evaluations per student**, allowing admins to tra
 
 ## 📸 Screenshots
 
-> _(Add screenshots here after running the project locally)_
+<img width="1900" height="887" alt="image" src="https://github.com/user-attachments/assets/b456bd30-31ba-4341-98b4-166116fffb8d" />
+
 
 
 
