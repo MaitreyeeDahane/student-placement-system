@@ -67,7 +67,7 @@ The system supports **multiple evaluations per student**, allowing admins to tra
 #### 1. Index Page
 <img width="1900" height="900" alt="Index Page" src="https://github.com/user-attachments/assets/b456bd30-31ba-4341-98b4-166116fffb8d" />
 
-#### 2. Student Form
+#### 2. Student Evaluation Form
 <img width="1900" height="900" alt="image" src="https://github.com/user-attachments/assets/ea227557-c0d4-48e2-8d9d-98ac141daa04" />
 
 #### 3. Result Page
