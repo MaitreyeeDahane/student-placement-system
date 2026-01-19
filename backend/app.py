@@ -5,7 +5,9 @@ import hashlib
 
 app = Flask(__name__)
 
-app.secret_key = "admin_secret_key"
+import os
+app.secret_key = os.environ["SECRET_KEY"]
+
 
 # ---------------- SAFE FLOAT HANDLER ----------------
 def safe_float(value, default=0):
@@ -432,7 +434,13 @@ def admin_student_history(student_id):
     )
 
 
-
+# if __name__ == "__main__":
+#     app.run(debug=True)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
+
+
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=5000)
+
